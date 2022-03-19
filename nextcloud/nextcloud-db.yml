@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextcloud-db
+  labels:
+    app: nextcloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod-label: nextcloud-db-pod
+  template:
+    metadata:
+      labels:
+        pod-label: nextcloud-db-pod
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:14.2-alpine
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: nextcloud-config
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgresdb
+      volumes:
+        - name: postgresdb
+          persistentVolumeClaim:
+            claimName: nextcloud-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextcloud-db
+  labels:
+    app: nextcloud
+spec:
+  type: NodePort
+  ports:
+    - port: 5432
+  selector:
+    app: nextcloud
