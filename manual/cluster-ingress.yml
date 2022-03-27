@@ -6,7 +6,7 @@ metadata:
     name: cluster-ingress
 spec:
   rules:
-  - host: files.mysite.test
+  - host: nextcloud.local
     http:
       paths:
       - pathType: Prefix

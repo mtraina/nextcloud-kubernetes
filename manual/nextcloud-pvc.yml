@@ -8,12 +8,12 @@ spec:
   capacity:
     storage: 5Gi
   hostPath:
-    path: /data/nextcloud-pv
+    path: "/data/nextcloud-pv"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nextcloud-pv-claim
+  name: nextcloud-pvc
   labels:
     app: nextcloud
 spec:
