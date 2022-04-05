@@ -32,7 +32,7 @@ spec:
       volumes:
         - name: postgres-db
           persistentVolumeClaim:
-            claimName: nextcloud-pvc
+            claimName: nextcloud-db-pvc
 ---
 apiVersion: v1
 kind: Service
