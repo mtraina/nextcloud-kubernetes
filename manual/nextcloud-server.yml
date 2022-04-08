@@ -21,6 +21,9 @@ spec:
         - name: server-storage
           mountPath: /var/www/html
           subPath: server-data
+        env:
+          - name: NEXTCLOUD_TRUSTED_DOMAINS
+            value: nextcloud.local
       volumes:
       - name: server-storage
         persistentVolumeClaim:

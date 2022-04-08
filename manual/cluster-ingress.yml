@@ -2,9 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: cluster-ingress
-  labels:
-    name: cluster-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    cert-manager.io/issuer: "selfsigned"
 spec:
+  tls:
+    - hosts:
+      - nextcloud.local
+      secretName: tls-secret
   rules:
   - host: nextcloud.local
     http:
