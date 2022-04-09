@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: cluster-ingress
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/enable-cors: "true"
     cert-manager.io/issuer: "selfsigned"
 spec:
